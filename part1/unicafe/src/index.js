@@ -3,6 +3,40 @@ import ReactDOM from 'react-dom'
 
 
 
+const Statistic = ({text, value}) => {
+  return(
+      <tr>
+        <td>{text}</td>
+        <td>{value}</td>
+      </tr>
+  )
+}
+
+const Statistics = ({all, good, neutral, bad, average, positive}) => {
+  if (all === 0) {
+    return (
+      <div>
+        No feedback given
+      </div>
+    )
+  }
+
+  return(
+    <div>
+      <table>
+        <tbody>
+          <Statistic text="good" value ={good} />
+          <Statistic text="neutral" value ={neutral} />
+          <Statistic text="bad" value ={bad} />
+          <Statistic text="all" value ={all} />
+          <Statistic text="average" value ={average} />
+          <Statistic text="positive" value ={positive + ' %'}  />
+        </tbody>
+      </table>
+    </div>
+  )
+}
+
 const Button = ({ onClick, text }) => (
   <button onClick={onClick}>
     {text}
@@ -37,14 +71,8 @@ const App = () => {
       <Button onClick={handleSetGood} text='good' />
       <Button onClick={handleSetNeutral} text='neutral' />
       <Button onClick={handleSetBad} text='bad' />
-      <h2>statistics</h2>
-    <p>good: {good}</p>
-    <p>neutral: {neutral}</p>
-    <p>bad: {bad}</p>
-  <p>all: {allVotes}</p>
-  <p>average: {average}</p>
-  <p>positive: {positive}</p>
-  
+      <Statistics all = {allVotes } good = {good} neutral = {neutral} bad = {bad}  average = {average} positive = {positive}></Statistics>
+      
     </div>
   )
 }
