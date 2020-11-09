@@ -29,8 +29,8 @@ const Statistics = ({all, good, neutral, bad, average, positive}) => {
           <Statistic text="neutral" value ={neutral} />
           <Statistic text="bad" value ={bad} />
           <Statistic text="all" value ={all} />
-          <Statistic text="average" value ={average} />
-          <Statistic text="positive" value ={positive + ' %'}  />
+          <Statistic text="average" value ={average.toFixed(2)} />
+          <Statistic text="positive" value ={positive.toFixed(2) + ' %'}  />
         </tbody>
       </table>
     </div>
