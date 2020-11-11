@@ -4,28 +4,60 @@ import ReactDOM from 'react-dom'
 
 const Button = ({ onClick, text }) => (
 <button onClick={onClick}>{text}</button>
+
 )
+
+function getMaxOfArray(numArray) {
+  return Math.max(...numArray)
+}
+
+function getHighestVote(array) {
+  return array.indexOf(getMaxOfArray(array))
+}
 
 
 const App = (props) => {
+
+  const voteList = Array(props.anecdotes.length).fill(0)
+
   const [selected, setSelected] = useState(0)
+  const [vote, setVote] = useState([...voteList])
+
+  const voteForAnecdote = () => {
+    const copy = [...vote]
+    copy[selected] += 1
+    setVote(copy)
+  }
 
   const handleNextAnecdote = () => {
-    
-    const random = Math.floor(Math.random() * Math.floor(5))
+    console.log(getMaxOfArray(vote))
+    console.log(getHighestVote(vote))
+  const random = Math.floor(Math.random() * (anecdotes.length - 1))
     return (
       setSelected(random)
     )
+
+    
   }
+
+  
     
   
 
   return (
     <div>
-      {props.anecdotes[selected]}
-      <p>
+      <h1>Anecdote of the day</h1>
+      <p>{props.anecdotes[selected]}</p>
+      
+      <Button onClick = {voteForAnecdote} text = 'Vote'></Button>
       <Button onClick = {handleNextAnecdote} text = 'Next anecdote'></Button>
-      </p>
+      
+      <p>has {vote[selected]} votes</p>
+
+      <h1>Anecdote with most votes</h1>
+  <p>{props.anecdotes[getHighestVote(vote)]}</p>
+
+    
     </div>
     
   )
