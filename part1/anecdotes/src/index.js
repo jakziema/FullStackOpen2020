@@ -7,6 +7,8 @@ const Button = ({ onClick, text }) => (
 
 )
 
+
+
 function getMaxOfArray(numArray) {
   return Math.max(...numArray)
 }
@@ -56,6 +58,7 @@ const App = (props) => {
 
       <h1>Anecdote with most votes</h1>
   <p>{props.anecdotes[getHighestVote(vote)]}</p>
+  
 
     
     </div>
