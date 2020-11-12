@@ -14,6 +14,16 @@ const Part = ({part}) => {
     )
 }
 
+const Total = ({course}) => {
+    const arrayOfExercises = course.parts.map((part) => part.exercises)
+    const sumOfExercises = arrayOfExercises.reduce((total, exercises) => total + exercises)
+
+    return (
+    <p><b>Total of {sumOfExercises} exercises</b></p>
+    )
+}
+
+
 const Course = ({course}) => {
     return (
         <div>
@@ -22,8 +32,10 @@ const Course = ({course}) => {
             {course.parts.map((part) => {
                 return (
                     <Part key = {part.id} part = {part}></Part>
+            
                 )
                 })}
+            <Total course = {course}></Total>
         </div>
     )
 }
